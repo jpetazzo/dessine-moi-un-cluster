@@ -8,10 +8,10 @@ First things first: we need a bunch of binaries. Specifically:
 - Docker (or some other container engine)
 
 If you are already on the machine where you want to build your
-cluster, I suggest to place all these binaries in `/usr/local/bin`.
-If you are going to do that on another machine, I suggest to
-download all the binaries in a `bin` directory, then later copy
-that directory to the target machine.
+cluster, I suggest placing all these binaries in `/usr/local/bin/`.
+If you are going to do it on another machine, I suggest downloading
+all the binaries to a `bin/` directory, then later copying that
+directory to the target machine.
 
 
 ### etcd
@@ -46,8 +46,8 @@ curl -L https://dl.k8s.io/v1.13.0/kubernetes-server-linux-amd64.tar.gz |
 ```
 
 For convenience, create a handful of symlinks. This is not strictly
-necessary, but without that, we will have to prefix every command with
-`hyperkube`, for instance `hyprekube kubectl get nodes`.
+necessary, but if we don't, we will have to prefix every command with
+`hyperkube`, for instance `hyperkube kubectl get nodes`.
 
 ```bash
 for BINARY in kubectl kube-apiserver kube-scheduler kube-controller-manager kubelet kube-proxy;
@@ -80,7 +80,7 @@ Yes, it's ugly! But our goal is to set things up one at a time.
 Get root, fire up tmux. We are going to use it as a crude
 process manager and log monitor. Yes, it's ugly! But ... etc.
 
-Start etcd:
+Start `etcd`:
 
 ```bash
 etcd
@@ -98,7 +98,7 @@ kube-apiserver --etcd-servers http://localhost:2379
 
 Congratulations, we now have a zero-node Kubernetes cluster! (Kind of.)
 
-Let's take a moment to reflect about the output of these commands:
+Let's take a moment to reflect on the output of these commands:
 
 ```bash
 kubectl get all
@@ -137,7 +137,7 @@ We have two options:
 After doing one or the other, `kubectl get all` will show you that a pod
 has been created, but it is still Pending. Why?
 
-Because we don't have a scheduler yet. And, most importantly ... We don't
+Because we don't have a scheduler yet. And, most importantly... we don't
 even have a node!
 
 So let's start the Docker Engine.
@@ -154,7 +154,7 @@ If you want, test that Docker really works:
 docker run alpine echo hello
 ```
 
-Now we can start kubelet. If we start kubelet "as is", it will work,
+Now we can start kubelet. If we start kubelet "as is," it will work,
 but it won't connect to the API server and it won't join our cluster.
 This will be a bit more complicated than for the controller manager
 (we can't just pass a `--master` flag to Kubelet). We need to give it
@@ -188,7 +188,7 @@ might seem weird, since there is only one node anyway (and the pod has
 nowhere to go, nowhere to hide!), but keep in mind that the scheduler
 also checks for various constraints. We might very well have only one
 node, but the pod might not be allowed to run there, because the node is
-full, or doesn't satisfay some other constraint.
+full, or doesn't satisfy some other constraint.
 
 We have two options here.
 
@@ -207,7 +207,7 @@ kube-scheduler --master http://localhost:8080
 
 Note that we could also run `kube-scheduler --kubeconfig kubeconfig.kubelet`
 and it would have the same result, since (at this point) `kubeconfig.kubelet`
-contains information saying "the API server is at `http://localhost:8080`".
+contains information saying "the API server is at `http://localhost:8080`."
 
 What's next?
 
@@ -230,7 +230,7 @@ Get the service address that was allocated:
 kubectl get svc web
 ```
 
-And try to access it with `curl`. Unfortunately, it will timeout.
+And try to access it with `curl`. Unfortunately, it will time out.
 
 To access service addresses, we need to run `kube-proxy`. It is similar
 to other cluster components that we started earlier.
@@ -239,7 +239,7 @@ to other cluster components that we started earlier.
 kube-proxy --master http://localhost:8080
 ```
 
-We can now open a new pane in tmux, and now if we `curl` that service
+We can now open a new pane in tmux, and if we `curl` that service
 IP, it should get us to the NGINX page.
 
 How did we get there? Ah, we can dive into `iptables` to get an idea.
@@ -249,7 +249,7 @@ iptables -t nat -L OUTPUT
 ```
 
 This will show us that all traffic goes through a chain called `KUBE-SERVICES`.
-Let's have a loot at it.
+Let's have a look at it.
 
 ```bash
 iptables -t nat -L KUBE-SERVICES
@@ -300,8 +300,8 @@ We have a one-node cluster, and it works, but:
   the internal Docker bridge;
 - as we add more nodes, we will need to make sure that the API server
   knows how to contact them, because by default it will try to use
-  their names (which won't work unless you have a properly setup
-  local DNS servers) and this problem will become apparent when
+  their names (which won't work unless you have a properly-set up
+  local DNS server) and this problem will become apparent when
   using commands like `kubectl logs` or `kubectl exec`;
 - we have no security and this is BAD: we need to set up TLS
   certificates;
