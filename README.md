@@ -1,5 +1,18 @@
 # Dessine-moi un cluster
 
+In december 2018, there were [4000 Certified Kubernetes Administrators](https://twitter.com/CloudNativChris/status/1072539903169310723).
+I'm now one of them (yay!) and while preparing the certification, I wanted to understand better how the Kubernetes control plane works.
+I tinkered a bit with [Kubernetes The Hard Way](https://github.com/kelseyhightower/kubernetes-the-hard-way/), but I also wanted to
+get a simpler, easier setup. This is what I came up with.
+
+*This will NOT tell you how to set up a "production-ready" Kubernetes cluster.
+This will show you how to set up a very simplified Kubernetes cluster,
+taking many shortcuts in the process (for instance, the first iteration
+gets you a 1-node cluster!) but giving a lot of space for further experimentation.*
+
+TL,DR: this is for learning and educational purposes only!
+
+
 ## Get ALL THE BINARIES
 
 First things first: we need a bunch of binaries. Specifically:
