@@ -37,7 +37,7 @@ we need:
 
 ```bash
 curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.10/etcd-v3.3.10-linux-amd64.tar.gz | 
-  tar --strip-components=1 --wildcards -zx '*/etcd' '*/etcdctl
+  tar --strip-components=1 --wildcards -zx '*/etcd' '*/etcdctl'
 ```
 
 
