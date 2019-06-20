@@ -36,7 +36,7 @@ This is a fancy one-liner to download the tarball and extract just what
 we need:
 
 ```bash
-curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.10/etcd-v3.3.10-linux-amd64.tar.gz | 
+curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.13/etcd-v3.3.13-linux-amd64.tar.gz | 
   tar --strip-components=1 --wildcards -zx '*/etcd' '*/etcdctl'
 ```
 
@@ -54,7 +54,7 @@ scheduler, kubelet, kubectl...), a bit like `busybox`, if you will.
 This is a fancy one-liner to download the bundle and extract hyperkube:
 
 ```bash
-curl -L https://dl.k8s.io/v1.13.0/kubernetes-server-linux-amd64.tar.gz | 
+curl -L https://dl.k8s.io/v1.15.0/kubernetes-server-linux-amd64.tar.gz | 
   tar --strip-components=3 -zx kubernetes/server/bin/hyperkube
 ```
 
@@ -75,7 +75,7 @@ done
 And then, we need Docker (or another runtime). Let's get one more tarball:
 
 ```bash
-curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.09.0.tgz |
+curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.tgz |
   tar --strip-components=1 -zx
 ```
 
@@ -335,5 +335,5 @@ To be continued!
 
 
 [etcd release page]: https://github.com/etcd-io/etcd/releases
-[kubernetes release page]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.13.md#downloads-for-v1130
+[kubernetes release page]: https://github.com/kubernetes/kubernetes/blob/master/CHANGELOG-1.15.md#downloads-for-v1150
 

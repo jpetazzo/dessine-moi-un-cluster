@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # Get etcd and etcdctl
-curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.12/etcd-v3.3.12-linux-amd64.tar.gz |
+curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.13/etcd-v3.3.13-linux-amd64.tar.gz |
   tar --strip-components=1 --wildcards -zx '*/etcd' '*/etcdctl'
 
 # Get hyperkube (the metabinary that holds all the Kubernetes binaries!)
-curl -L https://dl.k8s.io/v1.14.0/kubernetes-server-linux-amd64.tar.gz |
+curl -L https://dl.k8s.io/v1.15.0/kubernetes-server-linux-amd64.tar.gz |
   tar --strip-components=3 -zx kubernetes/server/bin/hyperkube
 
 # Create a bunch of symlinks for convenience
@@ -15,5 +15,5 @@ do
 done
 
 # Get docker
-curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.09.3.tgz |
+curl -L https://download.docker.com/linux/static/stable/x86_64/docker-18.09.6.tgz |
   tar --strip-components=1 -zx
