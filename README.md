@@ -44,7 +44,7 @@ curl -L https://github.com/etcd-io/etcd/releases/download/v3.3.13/etcd-v3.3.13-l
 ### Kubernetes
 
 Then, get binaries from the [kubernetes release page]. We want the "server"
-bundle for adm64 Linux.
+bundle for amd64 Linux.
 
 In that tarball, we just need one file: `hyperkube`.
 
