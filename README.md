@@ -12,6 +12,10 @@ gets you a 1-node cluster!) but giving a lot of space for further experimentatio
 
 TL,DR: this is for learning and educational purposes only!
 
+I gave a talk and a workshop based on these instructions in October 2019
+at the LISA19 conference in Portland, Oregon. The [video](https://www.youtube.com/watch?v=3KtEAa7_duA)
+for that talk is available.
+
 
 ## Get ALL THE BINARIES
 
